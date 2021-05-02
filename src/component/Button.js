@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from "@chakra-ui/react";
 
-export const ButtonForm = () => {
+export const ButtonForm = ({ children }) => {
     <Button colorScheme="blue">
-        Button
+        { children }
     </Button>
 }
