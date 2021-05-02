@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 
+
 function App() {
   return (
     <div className="App">
@@ -8,7 +9,7 @@ function App() {
           exact path='/'
           component={()=>(
             <div>
-              <h1>Hola mundo</h1>
+              <h1>Hola Mundo</h1>
             </div>
           )}
         />
