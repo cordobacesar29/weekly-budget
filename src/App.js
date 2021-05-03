@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import { LoginForm } from './component/LoginForm';
 
 
 function App() {
@@ -8,9 +9,7 @@ function App() {
         <Route
           exact path='/'
           component={()=>(
-            <div>
-              <h1>Hola Mundo</h1>
-            </div>
+            <LoginForm/>
           )}
         />
         <Route
