@@ -1,10 +1,15 @@
 import { Switch, Route } from "react-router-dom";
 import { LoginForm } from './component/LoginForm';
+import { Home } from './component/Home';
+import { Register } from './component/Register';
+import { Header } from './component/Header';
+
 
 
 function App() {
   return (
     <div className="App">
+      <Header/>
       <Switch>
         <Route
           exact path='/'
@@ -13,19 +18,15 @@ function App() {
           )}
         />
         <Route
-          exact path='/register'
+          exact path='/home'
           component={()=>(
-            <div>
-              <h1>Hola mundo register</h1>
-            </div>
+            <Home/>
           )}
         />
         <Route
-          exact path='/home'
+          exact path='/register'
           component={()=>(
-            <div>
-              <h1>Hola mundo home</h1>
-            </div>
+            <Register/>
           )}
         />
       </Switch>
