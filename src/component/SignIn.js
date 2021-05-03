@@ -1,4 +1,3 @@
-import React from 'react';
 import { Flex, Text, Heading } from '@chakra-ui/react';
 import { InputForm } from './Input';
 import { ButtonForm } from './Button';
@@ -18,14 +17,10 @@ export const SignIn = ( { toogleForm=()=>{} }) => {
                 <InputForm
                     className='email'
                     placeholder='Email'
-                    value=''
-                    onChange=''
                 />
                 <InputForm
                     className='password'
                     placeholder='Password'
-                    value=''
-                    onChange=''
                 />
                 <ButtonForm 
                     colorScheme='blue' 
