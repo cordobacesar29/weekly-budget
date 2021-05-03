@@ -1,17 +1,27 @@
-import React from 'react';
+import { useState } from 'react';
 import { Flex } from '@chakra-ui/react';
+import { SignUp } from './SignUp';
+import { SignIn } from './SignIn';
+
 
 export const LoginForm = () => {
-    return ( 
-        <Flex 
-            margin='2rem'
-            padding='1rem'
-            w='15rem'
-            h='100vh'
-            border='1px solid #c2c2c2'
-            borderRaduis='8px'
-        >
+    const [isSignUp, setIsSignUp ] = useState(true);
+    
+    const toogleForm = () => {
+        if(isSignUp) {
+            setIsSignUp(false);
+        }else {
+            setIsSignUp(true);
+        }
+    }
 
+    return ( 
+        <Flex
+            h='100vh'
+            justify='center'
+            alignItems='center'
+        >
+            {isSignUp ? <SignUp toogleForm={toogleForm}/> : <SignIn toogleForm={toogleForm}/>}
         </Flex>
     )
 }
