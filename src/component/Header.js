@@ -1,6 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react';
-import { AvatarProfile } from './Avatar';
-import { ButtonForm } from './Button';
+import { Flex, Text, Avatar, Button } from '@chakra-ui/react';
 
 export const Header = () => {
     return(
@@ -12,13 +10,17 @@ export const Header = () => {
             align='center'    
             p='1rem 3rem'
         >
-            <ButtonForm
+            <Button
                 colorScheme="blue" 
                 variant="ghost"
             >
                 <Text mr='1rem'>Profile</Text>
-                <AvatarProfile/>
-            </ButtonForm>
+                <Avatar
+                    size='xs'
+                    name="Dan Abrahmov" 
+                    src="https://bit.ly/dan-abramov"
+                />
+            </Button>
             
         </Flex>
     );
