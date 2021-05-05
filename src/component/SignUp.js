@@ -1,6 +1,4 @@
-import { Flex, Heading, Text } from '@chakra-ui/react';
-import { InputForm } from './Input';
-import { ButtonForm } from './Button';
+import { Flex, Heading, Text, Input, Button } from '@chakra-ui/react';
 
 export const SignUp = ({ toogleForm=()=>{} }) => {
     return(
@@ -14,35 +12,41 @@ export const SignUp = ({ toogleForm=()=>{} }) => {
             >   
                 <Text mb='1rem'>Welcome to Weekly Budget</Text>
                 <Heading mb='1rem'>SignUp</Heading>
-                <InputForm
+                <Input
+                    mb='1rem'
                     className='firstName'
                     placeholder='FirstName'
                 />
-                <InputForm
+                <Input
+                    mb='1rem'
                     className='lastName'
                     placeholder='LastName'
                 />
-                <InputForm
+                <Input
+                    mb='1rem'
                     className='email'
                     placeholder='Email'
                 />
-                <InputForm
+                <Input
+                    mb='1rem'
                     className='password'
                     placeholder='Password'
                 />
-                <ButtonForm 
+                <Button 
+                    mb='1rem'
                     colorScheme='blue' 
                     variant="solid"
                 >
                     SignUp
-                </ButtonForm>
-                <ButtonForm  
+                </Button>
+                <Button  
+                    mb='1rem'
                     colorScheme="blue" 
                     variant="ghost"
-                    toogleForm={toogleForm}
+                    onClick={toogleForm}
                 >
                     Already have an account? SignIn!
-                </ButtonForm>
+                </Button>
             </Flex>
     );
 }
