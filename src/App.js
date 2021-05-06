@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import { LoginForm } from './component/LoginForm';
 import { Home } from './component/Home';
 import { Register } from './component/Register';
+import { Profile } from './component/Profile';
 import { Header } from './component/Header';
 
 
@@ -27,6 +28,12 @@ function App() {
           exact path='/register'
           component={()=>(
             <Register/>
+          )}
+        />
+        <Route
+          exact path='/profile'
+          component={()=>(
+            <Profile/>
           )}
         />
       </Switch>
