@@ -1,26 +1,47 @@
 import { Flex, Text, Avatar, Button } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
 export const Header = () => {
+    const history = useHistory();
+
+    const handleNavigateHome = () => {
+        history.push('./home');
+    }
+    const handleNavigateProfile = () => {
+        history.push('./profile');
+    }
     return(
         <Flex
             minh='5rem'
             bg='rgba(66, 153, 225, 0.6)'
             direction='row'
-            justify='flex-end'
+            justify='space-between'
             align='center'    
             p='1rem 3rem'
         >
-            <Button
-                colorScheme="blue" 
-                variant="ghost"
+            <Avatar
+                        size='md'
+                        name="Dan Abrahmov" 
+                        src="https://bit.ly/dan-abramov"
+                        onClick={handleNavigateHome}
+                    />
+            <Flex 
+                direction='row'
             >
-                <Text mr='1rem'>Profile</Text>
-                <Avatar
-                    size='xs'
-                    name="Dan Abrahmov" 
-                    src="https://bit.ly/dan-abramov"
-                />
-            </Button>
+                <Button
+                    colorScheme="blue" 
+                    variant="ghost"
+                    onClick={handleNavigateProfile}
+                >
+                    <Text mr='1rem'>Profile</Text>
+                    <Avatar
+                        size='xs'
+                        name="Dan Abrahmov" 
+                        src="https://bit.ly/dan-abramov"
+                    />
+                </Button>
+            </Flex>
+            
             
         </Flex>
     );
