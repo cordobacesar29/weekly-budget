@@ -5,7 +5,7 @@ export const Header = () => {
     const history = useHistory();
 
     const handleNavigateHome = () => {
-        history.push('./home');
+        history.push('./');
     }
     const handleNavigateProfile = () => {
         history.push('./profile');
@@ -13,18 +13,19 @@ export const Header = () => {
     return(
         <Flex
             minh='5rem'
+            w='full'
             bg='rgba(66, 153, 225, 0.6)'
             direction='row'
             justify='space-between'
-            align='center'    
+            align='center'
             p='1rem 3rem'
         >
             <Avatar
-                        size='md'
-                        name="Dan Abrahmov" 
-                        src="https://bit.ly/dan-abramov"
-                        onClick={handleNavigateHome}
-                    />
+                size='md'
+                name="Dan Abrahmov" 
+                src="https://bit.ly/dan-abramov"
+                onClick={handleNavigateHome}
+            />
             <Flex 
                 direction='row'
             >
@@ -40,9 +41,7 @@ export const Header = () => {
                         src="https://bit.ly/dan-abramov"
                     />
                 </Button>
-            </Flex>
-            
-            
+            </Flex>            
         </Flex>
     );
 }
