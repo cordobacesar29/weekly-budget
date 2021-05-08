@@ -1,5 +1,5 @@
-import { useLocalStorageState } from "../hooks/useLocalStorage";
-import * as Auth from "../services/auth";
+import { useLocalStorageState } from './useLocalStorageState';
+import * as Auth from '../service/auth';
 
 // esto podria ser un servicio de autentificacion como Firebase, AWS Cognito, o un endpoint de autentificacion de su propio backend
 
