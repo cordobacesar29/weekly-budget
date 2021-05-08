@@ -1,0 +1,1 @@
+export const Profile = () => (<h1>hola mundo profile</h1>)
