@@ -1,27 +1,35 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
 import { Flex, Text, Heading, Input, Button } from '@chakra-ui/react';
-import {useLocalStorageState} from '../hooks/useLocalStorageState';
-import {sleep} from '../utils/sleep';
+import {useAuth} from '../hooks/useAuth';
 
 
-export const SignIn = ( { toogleForm=()=>{} }) => {
+export const SignIn = () => {
     const [ email, setEmail ] = React.useState('');
     const [ password, setPassword ] = React.useState('');
+    const [error, setError] = React.useState(null);
+    const [loading, setLoading] = React.useState(false);
+
     
-    const [users] = useLocalStorageState('users', []);
     const history = useHistory();
+    const {signin} = useAuth();
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        setError(null);
+        setLoading(true);
 
-        const isAuthenticated = users.find((user) => {
-            return user.email === email && user.password === password;
-        });
-        console.log(isAuthenticated);
-        sleep().then(()=>{
-            history.push('/home'); 
-         });
+        signin(email, password)
+        .then(()=>{
+            setError(null);
+            setLoading(false);
+
+            history.push('/');
+        })
+        .catch((e)=>{
+            setError(e);
+            setLoading(false);
+        });     
     };
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -55,11 +63,14 @@ export const SignIn = ( { toogleForm=()=>{} }) => {
             placeholder='Password'
             onChange={handlePasswordChange}
         />
+        {error ? (<Text color='red.400' mb='1rem'>{error}</Text> ) : null }
         <Button
             mb='1rem'
             colorScheme='blue' 
             variant="solid"
             type='submit'
+            disabled={loading}
+            isDisabled={loading}
         >
             SignIn
         </Button>
@@ -67,7 +78,9 @@ export const SignIn = ( { toogleForm=()=>{} }) => {
             mb='1rem'
             colorScheme="blue" 
             variant="ghost"
-            onClick={toogleForm}
+            onClick={()=>{
+                history.push('/signup')
+            }}
         >
             First time here? SignUp!
         </Button>

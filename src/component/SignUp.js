@@ -1,19 +1,23 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
 import { Flex, Heading, Text, Input, Button } from '@chakra-ui/react';
-import {useLocalStorageState} from '../hooks/useLocalStorageState';
-import {sleep} from '../utils/sleep';
+import {useAuth} from '../hooks/useAuth';
 
-export const SignUp = ({ toogleForm=()=>{} }) => {
+export const SignUp = () => {
     const [ firstName, setFirstName ] = React.useState('');
     const [ lastName, setLastName ] = React.useState('');
     const [ email, setEmail ] = React.useState('');
     const [ password, setPassword ] = React.useState('');
-    const [users, setUsers] = useLocalStorageState('users', []);
+    const [errors, setErrors] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
+
     const history = useHistory();
+    const {signup} = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setErrors([]);
+        setLoading(true);
 
         const user = {
             firstName, 
@@ -22,9 +26,17 @@ export const SignUp = ({ toogleForm=()=>{} }) => {
             password,
         };
 
-        setUsers([...users, user]);
-        sleep().then(()=>{
-           history.push('/signin'); 
+        
+        signup(user)
+        .then(()=>{
+            setErrors([]);
+            setLoading(false);
+
+            history.push('/signin');
+        })
+        .catch((e)=>{
+            setErrors(e);
+            setLoading(false);
         });
     };
 
@@ -74,11 +86,18 @@ export const SignUp = ({ toogleForm=()=>{} }) => {
                 placeholder='Password'
                 onChange={handlePasswordChange}
             />
+            {errors.map((error, i) =>(
+                <Text key={i} color='red.400' mb='1rem'>
+                    {error}
+                </Text>
+            ))}
             <Button 
                 mb='1rem'
                 colorScheme='blue' 
                 variant="solid"
                 type='submit'
+                disabled={loading}
+                isDisabled={loading}
             >
                 SignUp
             </Button>
@@ -86,7 +105,9 @@ export const SignUp = ({ toogleForm=()=>{} }) => {
                 mb='1rem'
                 colorScheme="blue" 
                 variant="ghost"
-                onClick={toogleForm}
+                onClick={()=> {
+                    history.push('/signin')
+                }}
             >
                 Already have an account? SignIn!
             </Button>
