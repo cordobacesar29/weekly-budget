@@ -2,6 +2,7 @@ import React from 'react';
 import {useHistory} from 'react-router-dom';
 import { Flex, Text, Heading, Input, Button } from '@chakra-ui/react';
 import {useAuth} from '../hooks/useAuth';
+import { UserContext } from '../context/user';
 
 
 export const SignIn = () => {
@@ -10,7 +11,7 @@ export const SignIn = () => {
     const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
 
-    
+    const {setUser} = React.useContext(UserContext);
     const history = useHistory();
     const {signin} = useAuth();
     
@@ -18,12 +19,13 @@ export const SignIn = () => {
         e.preventDefault();
         setError(null);
         setLoading(true);
-
+        
         signin(email, password)
-        .then(()=>{
+        .then(user =>{
             setError(null);
             setLoading(false);
-
+            setUser(user);
+            
             history.push('/');
         })
         .catch((e)=>{
